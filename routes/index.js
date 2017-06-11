@@ -1,15 +1,22 @@
-const {render, makeid, router, db, auth, injectUserIfExist} = require('../util');
+const {render, makeid, router, db, auth} = require('../util');
+const passwords = {};
 
 router.get('/', (req, res) => {
     res.write(render('main', {user: req.user}));
     res.end();
 });
 
-router.get('/cors', (req, res) => {
-    res.write(render('cors', {password}));
+router.get('/changePassword', auth, (req, res) => {
+    var password = passwords[req.user] || "''";
+    res.write(render('changePassword', {password, user: req.user}));
     res.end();
 });
 
+
+router.post('/changePassword', auth, (req, res) => {
+    passwords[req.user] = req.body.password;
+    res.redirect('/changePassword');
+});
 
 router.post('/login', (req, res) => {
     let session = makeid();

@@ -5,16 +5,10 @@ const db = {sessions: {}};
 const template = fs.readFileSync(`./public/main.html`, 'utf8');
 
 function auth(req, res, next) {
-    let cookie = req.cookie;
-    if (cookie) {
-        req.user = db.sessions[cookie];
-        if (req.user) {
-            next()
-        } else {
-            res.status(403).send('Invalid cookie');
-        }
+    if (req.user != 'anonymous') {
+        next()
     } else {
-        res.status(403).send('Auth required');
+        res.status(403).send('Permission denied');
     }
 }
 
