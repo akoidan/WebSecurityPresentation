@@ -1,0 +1,12 @@
+А)xss (persistent and non-persistent, console based)
+Б) cors (cookies on same port, read-only cookie, preflight, origin)
+В) server-side
+Г) CRSF
+1. when related entity id doesn't belong to user
+2. When architecture allows to execute any method in controller
+3. Sql injection
+4. spam vulnerability ( snohub 4 digits number login) sending 10000 request and login as a user
+5. not having captcha (fb example with record)
+6. running from root user
+7. ssl 
+8. transactions

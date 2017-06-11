@@ -1,0 +1,15 @@
+body {
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div {
+  padding: 10px;
+}
+a {
+  color: #00B7FF;
+}
+
+input[type=text], input[type=submit] {
+border: 1px solid #4c4c4c;
+}
