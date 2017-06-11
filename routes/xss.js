@@ -1,10 +1,10 @@
-const {render, makeid, injectUserIfExist, router} = require('../util');
+const {render, makeid, router} = require('../util');
 const resultExist = ['puppy', 'kitty'];
 const forumMessages = [];
 
-router.get('/search', (req, res) => {
+router.get('/search',  (req, res) => {
     let searchStr = req.query.search;
-    let resMap = {};
+    let resMap = {user: req.user};
     if (resultExist.includes(searchStr)) {
         resMap.results = `${searchStr} exist!`;
     } else {
@@ -19,11 +19,17 @@ router.get('/forum', (req, res) => {
     for (let message of forumMessages) {
         messages += `<div>${message}</div>`;
     }
-    res.write(render('xss/pers', {messages}));
+    res.write(render('xss/pers', {messages, user: req.user}));
     res.end();
 });
 
-router.post('/addMessage', injectUserIfExist, (req, res) => {
+router.get('/hackSomeone', (req, res) => {
+    res.write(render('xss/self', {user: req.user}));
+    res.end();
+});
+
+
+router.post('/addMessage', (req, res) => {
     forumMessages.push(`<b>${req.user}</b>: ${req.body.message}`);
     res.redirect('/forum');
 });

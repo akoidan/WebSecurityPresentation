@@ -1,6 +1,6 @@
 const {render, makeid, router, db, auth, injectUserIfExist} = require('../util');
 
-router.get('/', injectUserIfExist, (req, res) => {
+router.get('/', (req, res) => {
     res.write(render('main', {user: req.user}));
     res.end();
 });
