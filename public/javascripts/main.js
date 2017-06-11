@@ -184,6 +184,36 @@ function doPost(url, params, callback, form) {
     r.send(data);
 }
 
+function doGet(fileUrl, callback) {
+    logger.http("GET out", fileUrl)();
+    var fileRef = null;
+    var xobj = new XMLHttpRequest();
+    // special for IE
+    if (xobj.overrideMimeType) {
+        xobj.overrideMimeType("application/json");
+    }
+    xobj.open('GET', fileUrl, true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState === 4) {
+            if (xobj.status === 200) {
+                logger.http('GET in', '{} ::: "{}"...', fileUrl, xobj.responseText.substr(0, 100))();
+                if (callback) {
+                    callback(JSON.parse(xobj.responseText));
+                }
+            } else {
+                logger._http("Unable to load {}, response code is '{}', response: {}", fileUrl, xobj.status, xobj.response)();
+                growlError("<span>Unable to load {}, response code is <b>{}</b>, response: {} <span>".format(fileUrl, xobj.status, xobj.response));
+            }
+        }
+    };
+    xobj.send(null);
+    if (fileRef) {
+        document.getElementsByTagName("head")[0].appendChild(fileRef);
+        fileRef.onload = callback;
+    }
+}
+
+
 function changePassword() {
     doPost('/changePassword', {password: document.getElementById('pass').value})
 }

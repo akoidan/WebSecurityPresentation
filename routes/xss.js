@@ -1,6 +1,7 @@
 const {render, makeid, router} = require('../util');
 const resultExist = ['puppy', 'kitty'];
 const forumMessages = [];
+const forumMxessages = [];
 
 router.get('/search',  (req, res) => {
     let searchStr = req.query.search;
@@ -33,5 +34,22 @@ router.post('/addMessage', (req, res) => {
     forumMessages.push(`<b>${req.user}</b>: ${req.body.message}`);
     res.redirect('/forum');
 });
+
+router.post('/addMxessage', (req, res) => {
+    forumMxessages.push(`<b>${req.user}</b>: ${req.body.message}`);
+    res.redirect('/browserRender');
+});
+
+router.get('/mxmessage', (req, res) => {
+   res.json(forumMxessages).send();
+});
+
+
+router.get('/browserRender', (req, res) => {
+    res.write(render('xss/mXSS', {user: req.user}));
+    res.end();
+});
+
+
 
 module.exports = router;
