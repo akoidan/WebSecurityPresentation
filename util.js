@@ -2,6 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const db = {sessions: {}};
+const template = fs.readFileSync(`./public/main.html`, 'utf8');
 
 function auth(req, res, next) {
     let cookie = req.cookie;
@@ -18,16 +19,17 @@ function auth(req, res, next) {
 }
 
 function injectUserIfExist(req, res, next) {
-    req.user = db.sessions[req.cookies.sessionid];
+    req.user = db.sessions[req.cookies.sessionid] || 'anonymous';
     next();
 }
 
 function render(file, params) {
     let data = fs.readFileSync(`./public/${file}.html`, 'utf8');
+    let preparedTemplate = template.replace(/\{body}/g, (e, n) => data);
     if (params) {
-        data = data.replace(/\{(\w+)}/g, (e, n) => params[n]);
+        preparedTemplate = preparedTemplate.replace(/\{(\w+)}/g, (e, n) => params[n]);
     }
-    return data;
+    return preparedTemplate;
 }
 
 function makeid() {

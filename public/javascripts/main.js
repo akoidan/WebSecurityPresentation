@@ -183,3 +183,11 @@ function doPost(url, params, callback, form) {
     logger.http("POST out", "{} ::: {}", url, params)();
     r.send(data);
 }
+
+function changePassword() {
+    doPost('/changePassword', {password: document.getElementById('pass').value})
+}
+
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
