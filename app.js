@@ -5,10 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
+require('./routes/index');
+require('./routes/xss');
+let {router } = require('./util');
 
 var app = express();
-
 // view engine setup
 
 // uncomment after placing your favicon in /public
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.disable('etag');
-app.use('/', index);
+app.use('/', router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,14 @@
-А)xss (persistent and non-persistent, console based)
+А)xss. How to defeat.
+1)non-persistent exist during execution. Query isn't escaped and displayed in the dom
+ Attackers notices it and send an email to people. Folks open email and scripts inject into page executing malicious code.
+ 2)   persistent - even more devastating than non-persistent, thus it's much more easier to hack.
+  It calls this way coz it persists on disk (e.g. database)
+  3) Self-XSS - trick user to open webconsole and run some malicious code
+  4) mXss - same as xss but using innerHTML (use textContent/innerText if you must instead)
 Б) cors (cookies on same port, read-only cookie, preflight, origin)
 В) server-side
 Г) CRSF
+Д) CLickjacking
 1. when related entity id doesn't belong to user
 2. When architecture allows to execute any method in controller
 3. Sql injection
