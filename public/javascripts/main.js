@@ -145,6 +145,7 @@ function sliceZero(number, count) {
 
 function doPost(url, params, callback, form) {
     var r = new XMLHttpRequest();
+    r.withCredentials = true;
     r.onreadystatechange = function () {
         if (r.readyState === 4) {
             if (r.status === 200) {

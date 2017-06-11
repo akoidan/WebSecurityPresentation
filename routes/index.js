@@ -14,6 +14,7 @@ router.get('/changePassword', auth, (req, res) => {
 
 
 router.post('/changePassword', auth, (req, res) => {
+    console.log(`origin is ${req.headers.origin}`);
     passwords[req.user] = req.body.password;
     res.redirect('/changePassword');
 });
