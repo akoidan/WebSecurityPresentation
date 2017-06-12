@@ -6,12 +6,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var multer  = require('multer');
 require('./routes/index');
 require('./routes/xss');
+require('./routes/base');
+require('./routes/csrf');
 let {router } = require('./util');
-
-var app = express();
+const app = express();
 // view engine setup
 
 // uncomment after placing your favicon in /public
@@ -20,6 +21,7 @@ var app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer({dest: './uploads/'}).single());
 app.use(cookieParser());
 app.use((req, res, next) => {
     injectUserIfExist(req,res,next);

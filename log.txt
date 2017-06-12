@@ -1,4 +1,5 @@
-0) cookie
+0) http structure, cookie, referer, origin, host difference
+ cookie - small piece of data that stores steteful information on webbrowser
 a)xss. How to defeat.
 1)non-persistent exist during execution. Query isn't escaped and displayed in the dom
  Attackers notices it and send an email to people. Folks open email and scripts inject into page executing malicious code.
@@ -13,17 +14,21 @@ e) CLickjacking
 f) access-controll-allow-origin
 g) access-controll-allow-credentials . If you want to send cookie with xhrrequest from another domain you need to set xhr.withCredentials = true. In this way server will process your request. Server also needs to set "Access-Control-Allow-Credentials" header to "true". Only this way response will be available.
 h)  preflight https://stackoverflow.com/a/16945321/3872976
+I) ALLOWED_HOSTS https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts
+       if ($host !~* ^(pipspass.com|www.pipspass.com)$ ) {
+          return 444;
+       }
 
-1. when related entity id doesn't belong to user
+
+1. No security checks (when related entity id doesn't belong to user)
 2. When architecture allows to execute any method in controller
 3. Sql injection
 4. spam vulnerability ( snohub 4 digits number login) sending 10000 request and login as a user
 5. not having captcha (fb example with record)
 6. running from root user
-7. ssl 
+7. ssl (how it works, handshake, browser etc)
 8. transactions
 
 1. trusting client's (browser)  headers (host, referer, etc)). E.g. authorizing user if he comes from specific domain (that can be checked with referrer)
-2. No server-side validation
 3. Missing server-side validation ( like no test to check if private methods (non-route) are allowed)
 9. Production in debug mod

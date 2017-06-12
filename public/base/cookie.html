@@ -1,0 +1,24 @@
+<script src="/javascripts/cookie.js"></script>
+<form action="/setCookie" method="post" name="cookieForm" enctype="application/x-www-form-urlencoded">
+    <div class="form-group">
+        <input type="text" class="form-control" name="name" placeholder="name" value="token">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="value" placeholder="value" value="random">
+    </div>
+    <div class="form-group">
+        <input type="number" class="form-control" name="maxAge" placeholder="maxAge" value="600000">
+    </div>
+    <div class="form-group">
+        <select class="form-control " name="httpOnly">
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="button" class="btn btn-success" value="Server set" onclick="doPost('/setCookie', null, null, document.cookieForm)"/>
+        <input type="button" class="btn btn-success" value="Client set" onclick="setCookieFromForm()"/>
+        <input type="button" class="btn btn-danger" value="Erase" onclick="eraseCookie()"/>
+        <input type="button" class="btn btn-info" value="Read" onclick="showCookie()"/>
+    </div>
+</form>

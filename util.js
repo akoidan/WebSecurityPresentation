@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const db = {sessions: {}};
 const template = fs.readFileSync(`./public/main.html`, 'utf8');
+const passwords = {};
 
 function auth(req, res, next) {
     if (req.user != 'anonymous') {
@@ -36,4 +37,4 @@ function makeid() {
 }
 
 
-module.exports = {render, makeid, router, db, auth, injectUserIfExist};
+module.exports = {render, makeid, router, db, auth, injectUserIfExist, passwords};
