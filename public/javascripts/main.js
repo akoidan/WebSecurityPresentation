@@ -150,13 +150,13 @@ function doPost(url, params, callback, form) {
         if (r.readyState === 4) {
             if (r.status === 200) {
                 logger.http("POST in", "{} ::: {};", url, r.response)();
+                if (typeof(callback) === "function") {
+                    callback(JSON.parse(r.response));
+                } else {
+                    logger.warn("Skipping {} callback for POST {}", callback, url)();
+                }
             } else {
                 logger.httpErr("POST out: {} ::: {}, status:", url, r.response, r.status)();
-            }
-            if (typeof(callback) === "function") {
-                callback(r.response);
-            } else {
-                logger.warn("Skipping {} callback for POST {}", callback, url)();
             }
         }
     };
@@ -203,7 +203,7 @@ function doGet(fileUrl, callback) {
                 }
             } else {
                 logger._http("Unable to load {}, response code is '{}', response: {}", fileUrl, xobj.status, xobj.response)();
-                growlError("<span>Unable to load {}, response code is <b>{}</b>, response: {} <span>".format(fileUrl, xobj.status, xobj.response));
+
             }
         }
     };
@@ -212,9 +212,4 @@ function doGet(fileUrl, callback) {
         document.getElementsByTagName("head")[0].appendChild(fileRef);
         fileRef.onload = callback;
     }
-}
-
-
-function changePassword() {
-    doPost('/changePassword', {password: document.getElementById('pass').value})
 }

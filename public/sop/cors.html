@@ -1,0 +1,15 @@
+
+CRoss origin images work! While cross origin scripts doesn't
+
+<form>
+    <div class="form-group">
+        <input type="button" value="WITH access-control" class="btn btn-success form-control"  onclick="doGet('http://bank:3002/corsPass', r=> alert(r.message))">
+    </div>
+    <div class="form-group">
+        <input type="button"  value="WITHOUT access-control" class="btn form-control btn-danger"  onclick="doGet('http://bank:3002/corsFail', r=> alert(r.message))"/>
+    </div>
+</form>
+
+
+
+<img src="http://hack:3002/images/howtohack.png"/>

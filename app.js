@@ -9,8 +9,8 @@ var bodyParser = require('body-parser');
 var multer  = require('multer');
 require('./routes/index');
 require('./routes/xss');
-require('./routes/base');
 require('./routes/csrf');
+require('./routes/sop');
 let {router } = require('./util');
 const app = express();
 // view engine setup

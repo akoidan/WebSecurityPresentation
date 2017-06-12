@@ -18,7 +18,7 @@ router.get('/search',  (req, res) => {
 router.get('/forum', (req, res) => {
     let messages = '';
     for (let message of forumMessages) {
-        messages += `<div>${message}</div>`;
+        messages += `<h5>${message}</h5>`;
     }
     res.write(render('xss/pers', {messages, user: req.user}));
     res.end();

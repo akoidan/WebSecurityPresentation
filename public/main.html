@@ -24,15 +24,6 @@
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Base <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/cookie">Cookie</a></li>
-                            <li><a href="/forum">Persistent</a></li>
-                            <li><a href="/hackSomeone">Self-XSS</a></li>
-                            <li><a href="/browserRender">mXSS</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">XSS <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="/search">Non-persistent</a></li>
@@ -44,13 +35,20 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">CSRF <b class="caret"></b></a>
                         <ul class="dropdown-menu">
+                            <li><a href="/cookie">Cookie</a></li>
                             <li><a href="/changePassword">Change password</a></li>
                             <li><a href="http://hack:3001/csrf/hackCsrf.html">Hack it</a></li>
                         </ul>
                     </li>
-                    <li><a href="/cors2">CORS</a>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown">SOP <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://hack:3002/cors">CORS xhr</a></li>
+                            <li><a href="/sop">SOP</a></li>
+                            <li><a href="http://hack:3001/sop/hackSop.html">Hack sop </a></li>
+                        </ul>
                     </li>
-                    <li><a href="/cors3">CLICKJACKING</a>
+                    <li><a href="/clickjacking">CLICKJACKING</a>
                     </li>
                 </ul>
                 <form class="navbar-form navbar-right" action="/login" method="post">

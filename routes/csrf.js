@@ -25,8 +25,21 @@ function csrfCheck(req, res, next) {
     }
 }
 
+
+router.get('/cookie',  (req, res) => {
+    res.write(render('csrf/cookie', {user: req.user}));
+    res.end();
+});
+
+router.post('/setCookie',  (req, res) => {
+    res.cookie(req.body.name, req.body.value, {maxAge: parseInt(req.body.maxAge), httpOnly: req.body.httpOnly == 'true'});
+    res.status(200).send();
+});
+
+
 router.get('/changePassword', auth,/* crsfSet, */(req, res) => {
     var password = passwords[req.user] || "''";
+    // token can be injected anywhere, in header as well
     res.write(render('csrf/changePassword', {password, user: req.user/*, csrfToken: req.token*/}));
     res.end();
 });

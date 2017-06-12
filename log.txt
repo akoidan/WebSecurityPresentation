@@ -1,3 +1,4 @@
+-1) delete all cookies from browser
 0) http structure, cookie, referer, origin, host difference
  cookie - small piece of data that stores steteful information on webbrowser
 a)xss. How to defeat.
@@ -8,13 +9,14 @@ a)xss. How to defeat.
   3) Self-XSS - trick user to open webconsole and run some malicious code
   4) mXss - same as xss but using innerHTML (use textContent/innerText if you must instead)
 b) cors (cookies on same port, read-only cookie, preflight, origin)
+d) sop
 c) server-side
 d) CRSF
 e) CLickjacking
 f) access-controll-allow-origin
 g) access-controll-allow-credentials . If you want to send cookie with xhrrequest from another domain you need to set xhr.withCredentials = true. In this way server will process your request. Server also needs to set "Access-Control-Allow-Credentials" header to "true". Only this way response will be available.
 h)  preflight https://stackoverflow.com/a/16945321/3872976
-I) ALLOWED_HOSTS https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts
+I) ALLOWED_HOSTS https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts (host header)
        if ($host !~* ^(pipspass.com|www.pipspass.com)$ ) {
           return 444;
        }
@@ -28,7 +30,7 @@ I) ALLOWED_HOSTS https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-ho
 6. running from root user
 7. ssl (how it works, handshake, browser etc)
 8. transactions
-
+9.storing raw password in database
 1. trusting client's (browser)  headers (host, referer, etc)). E.g. authorizing user if he comes from specific domain (that can be checked with referrer)
 3. Missing server-side validation ( like no test to check if private methods (non-route) are allowed)
 9. Production in debug mod
