@@ -16,6 +16,8 @@ function crsfSet(req, res, next) {
 function csrfCheck(req, res, next) {
     if (!req.cookies.csrfToken) {
         res.status(403).send("csrfToken cookie is missing");
+    } else if (!req.body.csrfToken) {
+        res.status(403).send("csrfToken is missing from body");
     } else if (req.cookies.csrfToken !== req.body.csrfToken)  {
         res.status(403).send("Invalid csrf token");
     } else {
@@ -23,9 +25,9 @@ function csrfCheck(req, res, next) {
     }
 }
 
-router.get('/changePassword', auth, /*crsfSet,*/ (req, res) => {
+router.get('/changePassword', auth,/* crsfSet, */(req, res) => {
     var password = passwords[req.user] || "''";
-    res.write(render('csrf/changePassword', {password, user: req.user, /*token: req.token*/}));
+    res.write(render('csrf/changePassword', {password, user: req.user/*, csrfToken: req.token*/}));
     res.end();
 });
 
