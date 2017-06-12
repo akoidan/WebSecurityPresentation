@@ -218,7 +218,3 @@ function doGet(fileUrl, callback) {
 function changePassword() {
     doPost('/changePassword', {password: document.getElementById('pass').value})
 }
-
-$(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
-});

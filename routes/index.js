@@ -32,4 +32,9 @@ router.post('/changePassword', (req, res) => {
     res.redirect('/cors');
 });
 
+router.post('/changePasswordNoRed', (req, res) => {
+    password = req.body.password;
+    res.status(200).send('OK');
+});
+
 module.exports = router;
