@@ -1,0 +1,9 @@
+<script src="/javascripts/preflight.js"></script>
+<h4> Preflight request were created to check whether server supports current request or not</h4>
+<h4>Preflight request triggers only when origin != host and at least one of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Preflighted_requests">these</a> is true</h4>
+<h4><a href="https://stackoverflow.com/a/16945321/3872976">What is the purpose of preflight? </a></h4>
+<input type="button" class="btn btn-info" value="PUT" onclick="prePut()"/>
+<input type="button" class="btn btn-info" value="PUT own" onclick="prePutOWn()"/>
+<input type="button" class="btn btn-info" value="No-preflight" onclick="noPreflight()"/>
+<input type="button" class="btn btn-info" value="HEADER" onclick="preHeader()"/>
+<input type="button" class="btn btn-info" value="Content-Type" onclick="preContentType()"/>
