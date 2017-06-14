@@ -9,7 +9,7 @@ router.post('/login', (req, res) => {
     let session = makeid();
     db.sessions[session] = req.body.login;
     res.cookie('sessionid', session, {maxAge: 900000, httpOnly: true});
-    res.redirect('/');
+    res.redirect(req.headers.referer || '/');
 
 });
 
