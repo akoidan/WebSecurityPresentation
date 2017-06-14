@@ -21,6 +21,15 @@ router.get('/ddos', (req, res) => {
 });
 
 
+router.get('/rawpasswords', (req, res) => {
+    res.write(render('slides/rawpasswords', {user: req.user}));
+    res.end();
+});
+
+router.get('/ssl', (req, res) => {
+    res.write(render('slides/ssl', {user: req.user}));
+    res.end();
+});
 
 router.get('/cookie',  (req, res) => {
     res.write(render('slides/cookie', {user: req.user}));
