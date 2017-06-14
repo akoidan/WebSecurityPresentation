@@ -22,3 +22,13 @@ function insertRow(name, value) {
     return valueField;
 };
 
+$(document).ready(function() {
+    $('pre').hide();
+    $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+});
+
+function showPre() {
+    $('pre').show()
+}

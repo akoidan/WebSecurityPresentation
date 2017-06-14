@@ -1,4 +1,7 @@
 <script src="/sqlinjection/sqlinjection.js"> </script>
+<link rel="stylesheet" href="./default.min.css">
+<script src="./highlight.min.js"></script>
+
 <form name="sqlInjectionForm">
     <div class="form-group">
         <input type="text" name="username" class="form-control"  placeholder="username">
@@ -6,6 +9,43 @@
     <div class="form-group">
         <input type="button" value="find" class="btn btn-success form-control"  onclick="findUser()">
     </div>
+    <div class="form-group">
+        <input type="button" class="btn btn-danger form-control" value="malicious" onclick="setHack()"/>
+    </div>
+    <div class="form-group">
+        <input type="button" class="btn btn-info form-control" value="don't reinvent the wheel" onclick="showPre()"/>
+    </div>
+
 </form>
-<input type="button" class="btn btn-danger form-control" value="malicious" onclick="setHack()"/>
+
 <table id="results" class="table table-bordered"></table>
+<pre class="hljs">
+function str2sql(str, isString) {
+    var res;
+    if (typeof isString == 'undefined') {
+        isString = false;
+    }
+
+    if (!isString && str && (typeof str == 'object')) {
+        str = JSON.stringify(str);
+    }
+
+    if (typeof str == 'number') {
+        res = str;
+    } else if (typeof str == 'string') {
+        if (str === Number(str).toString() && !isString) {
+            res = str;
+        } else if (str !== '') {
+            res = "'" + str.replace(/'/g, "''") + "'";
+        } else {
+            res = "''";
+        }
+    } else if (typeof str == 'boolean') {
+        res = str ? 'TRUE' : 'FALSE';
+    } else {
+        res = 'DEFAULT';
+    }
+
+    return res;
+}
+</pre>
