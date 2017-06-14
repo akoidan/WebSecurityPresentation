@@ -15,6 +15,7 @@ require('./routes/preflight');
 require('./routes/clickjacking');
 require('./routes/sqlinjection');
 require('./routes/slides');
+require('./routes/acv');
 let {router, render} = require('./util');
 const app = express();
 // view engine setup
