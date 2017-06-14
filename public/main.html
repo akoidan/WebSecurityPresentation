@@ -24,7 +24,7 @@
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Getting started <b class="caret"></b></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">Intro <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="/cost">Damages</a></li>
                             <li><a href="/authProcess">Authorization process</a></li>
@@ -41,40 +41,26 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">CSRF <b class="caret"></b></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">CSRF/SOP <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/changePassword">Change password</a></li>
-                            <li><a href="http://hack:3001/csrf/hackCsrf.html">Hack it</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown">SOP <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                            <li><a href="/changePassword">PAssword w/o csrf</a></li>
                             <li><a href="http://hack:3002/cors">CORS xhr</a></li>
                             <li><a href="/sop">SOP</a></li>
-                            <li><a href="http://hack:3001/sop/hackSop.html">Hack sop </a></li>
+                            <li><a href="/preflight">Preflight</a></li>
                         </ul>
                     </li>
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown">What else <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/preflight">Preflight</a></li>
                             <li><a href="/htst">HTST (draw)</a></li>
                             <li><a href="/ssl">SSL</a></li>
                             <li><a href="/ddos">DDOS</a></li>
                             <li><a href="/acv">Access control violation</a></li>
                             <li><a href="/sqlinjection">Sql Injections</a></li>
                             <li><a href="/rawpasswords">Raw passwords</a></li>
+                            <li><a href="/sendMoney">Clickjacking sendMoney</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown">ClickJacking <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/sendMoney">sendMoney</a></li>
-                            <li><a href="http://hack:3001/clickjacking/hack.html">hack it</a></li>
-                        </ul>
-                    </li>
-
                 </ul>
                 <form class="navbar-form navbar-right" action="/login" method="post">
                     <div class="form-group">

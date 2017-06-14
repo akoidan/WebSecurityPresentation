@@ -25,3 +25,7 @@ h2 {
   text-align: center;
 }
 
+.navbar input[name=login]{
+  width: 150px;
+}
+
