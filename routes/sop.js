@@ -39,7 +39,7 @@ router.get('/cors', (req, res) => {
 });
 
 
-router.post('/changePasswordSOP', auth, sopCheck, (req, res) => {
+router.post('/changePasswordSOP', auth, /*sopCheck,*/ (req, res) => {
     console.log(`origin is ${req.headers.origin}`);
     passwords[req.user] = req.body.password;
     res.status(200).json({password: passwords[req.user]});
