@@ -7,3 +7,21 @@ body {
 input.form-control[type=search] {
   width: calc(100% - 100px);
 }
+
+h1 {
+  font-size: 100px !important;
+  text-align: center;
+}
+.list-group {
+  font-size: 60px;
+}
+
+.img-responsive {
+  margin: auto;
+}
+
+h2 {
+  font-size: 70px !important;
+  text-align: center;
+}
+

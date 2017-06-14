@@ -13,6 +13,7 @@ require('./routes/csrf');
 require('./routes/sop');
 require('./routes/preflight');
 require('./routes/clickjacking');
+require('./routes/slides');
 let {router, render} = require('./util');
 const app = express();
 // view engine setup

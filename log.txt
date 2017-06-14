@@ -30,7 +30,7 @@ I) ALLOWED_HOSTS https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-ho
 6. running from root user
 7. ssl (how it works, handshake, browser etc)
 8. transactions
-9.storing raw password in database
+9.storing raw password in database (rainbow tables for salt)
 1. trusting client's (browser)  headers (host, referer, etc)). E.g. authorizing user if he comes from specific domain (that can be checked with referrer)
-3. Missing server-side validation ( like no test to check if private methods (non-route) are allowed)
+3. Access control Violation (Missing server-side validation like when one user is not allowed to do something but another user is allowed. and you just didn't show the button but the rest is open.
 9. Production in debug mod

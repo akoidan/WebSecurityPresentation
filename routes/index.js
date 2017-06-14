@@ -1,7 +1,7 @@
 const {render, makeid, router, db, auth, passwords} = require('../util');
 
 router.get('/', (req, res) => {
-    res.write(render('main', {user: req.user}));
+    res.write(render('body', {user: req.user}));
     res.end();
 });
 
