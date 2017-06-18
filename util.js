@@ -1,12 +1,11 @@
 const fs = require('fs');
 const express = require('express');
 const router = express.Router();
-const db = {sessions: {}};
-const template = fs.readFileSync(`./public/main.html`, 'utf8');
 const passwords = {};
+const sqlight  = require('sqlite');
 
 function auth(req, res, next) {
-    if (req.user != 'anonymous') {
+    if (req.user) {
         next()
     } else {
         res.status(403).send('Permission denied');
@@ -14,12 +13,26 @@ function auth(req, res, next) {
 }
 
 function injectUserIfExist(req, res, next) {
-    req.user = db.sessions[req.cookies.sessionid] || 'anonymous';
-    next();
+    if (req.cookies.sessionid) {
+        sqlight.get('select * from users where session_id = ?', req.cookies.sessionid)
+            .then(e=> {
+                req.user = e && e.login;
+                next();
+            }).catch(onError(res))
+    } else {
+        next()
+    }
+}
+
+function onError(res) {
+    return (e) => {
+        res.status(500).json(e);
+    }
 }
 
 function render(file, params) {
     let data = fs.readFileSync(`./public/${file}.html`, 'utf8');
+    const template = fs.readFileSync(`./public/main.html`, 'utf8');
     let preparedTemplate = template.replace(/\{body}/g, (e, n) => data);
     if (params) {
         preparedTemplate = preparedTemplate.replace(/\{(\w+)}/g, (e, n) => params[n]);
@@ -35,6 +48,6 @@ function makeid() {
     }
     return text;
 }
+sqlight.open('./database.sqlite', { cached: true })
 
-
-module.exports = {render, makeid, router, db, auth, injectUserIfExist, passwords};
+module.exports = {render, makeid, router, auth, injectUserIfExist, passwords, sqlight, onError};

@@ -1,4 +1,4 @@
-const {render, makeid, router, db, auth, passwords} = require('../util');
+const {render, makeid, router, sqlight, onError} = require('../util');
 
 router.get('/', (req, res) => {
     res.write(render('body', {user: req.user}));
@@ -6,21 +6,27 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+    const finish = () => {
+        res.cookie('sessionid', session, {maxAge: 900000, httpOnly: true});
+        res.redirect(req.headers.referer || '/');
+    };
     let session = makeid();
-    db.sessions[session] = req.body.login;
-    res.cookie('sessionid', session, {maxAge: 900000, httpOnly: true});
-    res.redirect(req.headers.referer || '/');
-
+    if (req.body.type === 'Sign In') {
+        sqlight.run('update users set session_id = ? where login = ? and password = ?',
+            session, req.body.login, req.body.password).then(user => {
+            if (user.changes) {
+                finish()
+            } else {
+                res.write(render('error', {error: "Invalid login or password"}));
+                res.end();
+            }
+        }).catch(onError(res))
+    } else if (req.body.type === 'Sign Up') {
+        sqlight.run('insert into users (login, password, session_id) values (?, ?, ?)',
+           req.body.login, req.body.password, session)
+            .then(finish)
+            .catch(onError(res))
+    }
 });
-
-// router.post('/changePassword', (req, res) => {
-//     password = req.body.password;
-//     res.redirect('/csrf');
-// });
-//
-// router.post('/changePasswordNoRed', (req, res) => {
-//     password = req.body.password;
-//     res.status(200).send('OK');
-// });
 
 module.exports = router;

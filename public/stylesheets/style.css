@@ -25,7 +25,17 @@ h2 {
   text-align: center;
 }
 
-.navbar input[name=login]{
-  width: 150px;
+.navbar input[type=submit]{
+  margin: 0 10px;
+}
+.center {
+  text-align: center;
+}
+
+.wide {
+  min-width: 250px !important;
+}
+.wide form {
+  padding: 10px;
 }
 
