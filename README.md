@@ -4,6 +4,7 @@
 
 npm install
 node bin/www & node node app-attack.js
+that will run app on http://localhost:3002/ and app-attack on http://localhost:3001/
 
 Также хосты нужно добавить hack bank.
 В линуксе:
